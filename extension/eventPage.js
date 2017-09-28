@@ -1,15 +1,17 @@
 let currentUrl = '';
-let currentUpdateDate = null;
+let lastUpdateDate = null;
 let currentWindowId = 0;
 
 chrome.tabs.onActivated.addListener(activeInfo => {
+    console.log('on activated');
     chrome.tabs.get(activeInfo.tabId, function (tab) {
         if (chrome.runtime.lastError) {
             console.warn('runtime error', chrome.runtime.lastError);
-            // remove currentUrl and currentWindowId?
+            updateTimeSpentInWebsite(currentUrl);
+            stopTrackingTime();
             return;
         }
-        setCurrentUrl(tab.url, 'on activated');
+        setCurrentUrl(tab.url);
     });
 });
 
@@ -17,12 +19,16 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, updatedTab) => {
     if (!changeInfo.url) {
         return;
     }
+    console.log('on updated');
     updateCurrentTab();
 });
 
 chrome.windows.onFocusChanged.addListener(windowId => {
     if (windowId === chrome.windows.WINDOW_ID_NONE) {
+        // update y ponlo como null.
         console.log('should stop tracking time.');
+        updateTimeSpentInWebsite(currentUrl);
+        stopTrackingTime();
     } else {
         console.log('should continue tracking time');
         currentWindowId = windowId;
@@ -42,7 +48,20 @@ function updateCurrentTab() {
 }
 
 function setCurrentUrl(newUrl) {
-    console.log('changing current url to:', newUrl);
+    updateTimeSpentInWebsite(currentUrl);
     currentUrl = new URL(newUrl);
-    currentUpdateDate = new Date().getTime();
+}
+
+function updateTimeSpentInWebsite(url) {
+    const currentDate = new Date().getTime();
+    if (lastUpdateDate && currentUrl) {
+        const timeSpent = (currentDate - lastUpdateDate) / 1000;
+        console.log('spent', timeSpent, 's in', url);
+    }
+    lastUpdateDate = currentDate;
+}
+
+function stopTrackingTime() {
+    lastUpdateDate = null;
+    currentUrl = '';
 }
