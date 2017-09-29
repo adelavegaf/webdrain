@@ -11,33 +11,55 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-    'visits.insert'(domain, accessedTimestamp, timeSpent) {
+    'visits.insert'(domain, dateAccessedTimestamp, timeSpent) {
         check(domain, String);
-        check(accessedTimestamp, Match.Integer);
-        check(timeSpent, Match.Integer);
+        check(dateAccessedTimestamp, Number);
+        check(timeSpent, Number);
 
         if (!Meteor.userId()) {
             throw new Meteor.Error('not-authorized');
         }
 
-        Visits.insert({
+        return Visits.insert({
             domain: domain,
-            dateAccessedTimestamp: accessedTimestamp,
+            dateAccessedTimestamp: dateAccessedTimestamp,
             timeSpent: timeSpent,
             owner: Meteor.userId(),
             username: Meteor.user().username,
         });
     },
-    'visits.remove'(visitId) {
-        check(visitId, String);
+    'visits.update'(id, timeSpent) {
+        check(id, String);
+        check(timeSpent, Number);
 
-        const visit = Visits.findOne(visitId);
+        const visit = Visits.findOne(id);
+
+        if (!Meteor.userId()) {
+            throw new Meteor.Error('not-authorized');
+        }
 
         if (visit.owner !== Meteor.userId()) {
             throw new Meteor.Error('not-authorized');
         }
 
-        Visits.remove(visitId);
+        return Visits.update({
+            '_id': id
+        }, {
+            $inc: {
+                timeSpent: timeSpent
+            }
+        });
+    },
+    'visits.remove'(id) {
+        check(id, String);
+
+        const visit = Visits.findOne(id);
+
+        if (visit.owner !== Meteor.userId()) {
+            throw new Meteor.Error('not-authorized');
+        }
+
+        Visits.remove(id);
     },
 });
 
