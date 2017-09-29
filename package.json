@@ -1,0 +1,14 @@
+{
+  "name": "browse-stats",
+  "private": true,
+  "scripts": {
+    "start": "meteor run"
+  },
+  "dependencies": {
+    "@types/react": "^16.0.7",
+    "babel-runtime": "^6.20.0",
+    "meteor-node-stubs": "~0.2.4",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  }
+}
