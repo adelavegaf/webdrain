@@ -11,8 +11,8 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-    'visits.insert'(domain, dateAccessedTimestamp, timeSpent) {
-        check(domain, String);
+    'visits.insert'(hostname, dateAccessedTimestamp, timeSpent) {
+        check(hostname, String);
         check(dateAccessedTimestamp, Number);
         check(timeSpent, Number);
 
@@ -21,7 +21,7 @@ Meteor.methods({
         }
 
         return Visits.insert({
-            domain: domain,
+            hostname: hostname,
             dateAccessedTimestamp: dateAccessedTimestamp,
             timeSpent: timeSpent,
             owner: Meteor.userId(),
