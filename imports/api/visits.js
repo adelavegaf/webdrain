@@ -8,6 +8,32 @@ if (Meteor.isServer) {
     Meteor.publish('visits', function tasksPublication() {
         return Visits.find({owner: this.userId});
     });
+
+    Meteor.methods({
+        'visits.timeSpentSince'(sinceTimestamp) {
+
+            if (!Meteor.userId()) {
+                throw new Meteor.Error('not-authorized');
+            }
+
+            return Visits.aggregate(
+                {
+                    $match: {
+                        dateAccessedTimestamp: {
+                            $gte: sinceTimestamp
+                        },
+                        owner: Meteor.userId()
+                    }
+                },
+                {
+                    $group: {
+                        _id: '$hostname',
+                        total: {$sum: '$timeSpent'}
+                    }
+                }
+            );
+        }
+    });
 }
 
 Meteor.methods({
@@ -64,29 +90,6 @@ Meteor.methods({
         }
 
         Visits.remove(id);
-    },
-    'visits.timeSpentSince'(sinceTimestamp) {
-
-        if (!Meteor.userId()) {
-            throw new Meteor.Error('not-authorized');
-        }
-
-        return Visits.aggregate(
-            {
-                $match: {
-                    dateAccessedTimestamp: {
-                        $gte: sinceTimestamp
-                    },
-                    owner: Meteor.userId()
-                }
-            },
-            {
-                $group: {
-                    _id: '$hostname',
-                    total: {$sum: '$timeSpent'}
-                }
-            }
-        );
     }
 });
 
