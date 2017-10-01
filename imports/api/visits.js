@@ -55,12 +55,39 @@ Meteor.methods({
 
         const visit = Visits.findOne(id);
 
+        if (!Meteor.userId()) {
+            throw new Meteor.Error('not-authorized');
+        }
+
         if (visit.owner !== Meteor.userId()) {
             throw new Meteor.Error('not-authorized');
         }
 
         Visits.remove(id);
     },
+    'visits.timeSpentSince'(sinceTimestamp) {
+
+        if (!Meteor.userId()) {
+            throw new Meteor.Error('not-authorized');
+        }
+
+        return Visits.aggregate(
+            {
+                $match: {
+                    dateAccessedTimestamp: {
+                        $gte: sinceTimestamp
+                    },
+                    owner: Meteor.userId()
+                }
+            },
+            {
+                $group: {
+                    _id: '$hostname',
+                    total: {$sum: '$timeSpent'}
+                }
+            }
+        );
+    }
 });
 
 export default Visits;
