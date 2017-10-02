@@ -11,4 +11,15 @@ export default class Api {
             });
         });
     }
+
+    static getFrequencySince(sinceTimestamp) {
+        return new Promise((resolve, reject) => {
+            Meteor.call('visits.frequencySince', sinceTimestamp, (error, result) => {
+                if (error) {
+                    reject(error);
+                }
+                resolve(result);
+            });
+        });
+    }
 }
