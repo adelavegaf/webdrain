@@ -23,7 +23,7 @@ export default class App extends Component {
                     <PieChart>
                         <Pie dataKey="value" data={this.getPieData()}
                              isAnimationActive={true}/>
-                        <Tooltip/>
+                        <Tooltip formatter={(val) => val + '%'}/>
                         <Legend verticalAlign="bottom"/>
                     </PieChart>
                 </ResponsiveContainer>
