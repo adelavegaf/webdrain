@@ -9,8 +9,8 @@ export default class App extends Component {
         return (
             <div>
                 <AccountsUIWrapper/>
-                <UsagePieChartContainer sinceTimestamp={0}/>
-                <FrequencyBarChartContainer sinceTimestamp={0}/>
+                <UsagePieChartContainer sinceDate={new Date(2015, 1, 1)}/>
+                <FrequencyBarChartContainer sinceDate={new Date(2016, 1, 1)}/>
             </div>
         );
     }

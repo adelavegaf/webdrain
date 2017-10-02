@@ -27,7 +27,7 @@ export default class UsagePieChartContainer extends Component {
     }
 
     componentDidMount() {
-        Api.getUsageSince(this.props.sinceTimestamp)
+        Api.getUsageSince(this.props.sinceDate)
            .then((response) => {
                this.setState({aggregateVisits: this.convertUsageToTopFivePercentages(response)});
            })

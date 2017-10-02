@@ -10,7 +10,7 @@ if (Meteor.isServer) {
     });
 
     Meteor.methods({
-        'visits.timeSpentSince'(sinceTimestamp) {
+        'visits.timeSpentSince'(sinceDate) {
 
             if (!Meteor.userId()) {
                 throw new Meteor.Error('not-authorized');
@@ -19,8 +19,8 @@ if (Meteor.isServer) {
             return Visits.aggregate(
                 {
                     $match: {
-                        dateAccessedTimestamp: {
-                            $gte: sinceTimestamp
+                        dateAccessed: {
+                            $gte: sinceDate
                         },
                         owner: Meteor.userId()
                     }
@@ -36,7 +36,7 @@ if (Meteor.isServer) {
     });
 
     Meteor.methods({
-        'visits.frequencySince'(sinceTimestamp) {
+        'visits.frequencySince'(sinceDate) {
 
             if (!Meteor.userId()) {
                 throw new Meteor.Error('not-authorized');
@@ -45,8 +45,8 @@ if (Meteor.isServer) {
             return Visits.aggregate(
                 {
                     $match: {
-                        dateAccessedTimestamp: {
-                            $gte: sinceTimestamp
+                        dateAccessed: {
+                            $gte: sinceDate
                         },
                         owner: Meteor.userId()
                     }
@@ -63,9 +63,8 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-    'visits.insert'(hostname, dateAccessedTimestamp, timeSpent) {
+    'visits.insert'(hostname, timeSpent) {
         check(hostname, String);
-        check(dateAccessedTimestamp, Number);
         check(timeSpent, Number);
 
         if (!Meteor.userId()) {
@@ -74,7 +73,7 @@ Meteor.methods({
 
         return Visits.insert({
             hostname: hostname,
-            dateAccessedTimestamp: dateAccessedTimestamp,
+            dateAccessed: new Date(),
             timeSpent: timeSpent,
             owner: Meteor.userId(),
             username: Meteor.user().username,

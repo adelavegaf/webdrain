@@ -22,7 +22,7 @@ export default class FrequencyBarChartContainer extends Component {
     }
 
     componentDidMount() {
-        Api.getFrequencySince(this.props.sinceTimestamp)
+        Api.getFrequencySince(this.props.sinceDate)
            .then((response) => {
                this.setState({aggregateVisits: this.getTopFiveFrequencies(response)});
            })
