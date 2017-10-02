@@ -1,28 +1,32 @@
 import React, {Component} from 'react';
 
 import AccountsUIWrapper from '../utils/AccountsUIWrapper.jsx';
-import {Pie, PieChart, Tooltip} from 'recharts';
+import {Legend, Pie, PieChart, ResponsiveContainer, Tooltip} from 'recharts';
 
+const PIE_COLORS = ['#82d962', '#88c1ff', '#cec3ff', '#fff984', '#ff5261'];
 export default class App extends Component {
     getPieData() {
-        const data = this.props.aggregateVisits.map(e => {
+        return this.props.aggregateVisits.map((e, index) => {
             return {
                 name: e.hostname,
-                value: Number(parseFloat(e.percentage * 100).toFixed(0))
+                value: Number(parseFloat(e.percentage * 100).toFixed(0)),
+                fill: PIE_COLORS[index]
             };
         });
-        console.log(data);
-        return data;
     }
 
     render() {
         return (
             <div>
                 <AccountsUIWrapper/>
-                <PieChart width={730} height={250}>
-                    <Pie data={this.getPieData()} cx="50%" cy="50%" outerRadius={50} fill="#8884d8" isAnimationActive={true}/>
-                    <Tooltip/>
-                </PieChart>
+                <ResponsiveContainer height={300}>
+                    <PieChart>
+                        <Pie dataKey="value" data={this.getPieData()}
+                             isAnimationActive={true}/>
+                        <Tooltip/>
+                        <Legend verticalAlign="bottom"/>
+                    </PieChart>
+                </ResponsiveContainer>
             </div>
         );
     }
