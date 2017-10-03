@@ -36,4 +36,9 @@ export default class DateUtil {
         date.setHours(0, 0, 0, 0);
         return date;
     }
+
+    static getFurthestDate() {
+        // Dec 31 1899
+        return new Date(0, 0, 0);
+    }
 }

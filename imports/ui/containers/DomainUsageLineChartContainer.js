@@ -8,7 +8,9 @@ export default class DomainUsageLineChartContainer extends Component {
         super(props);
         this.state = {
             aggregateVisits: [],
-            sinceDate: DateUtil.getFirstDayOfPastWeek()
+            sinceDate: DateUtil.getFirstDayOfPastWeek(),
+            selectedDomain: '',
+            domains: []
         }
     }
 
@@ -24,8 +26,26 @@ export default class DomainUsageLineChartContainer extends Component {
         return weeklyUsage;
     }
 
+    setSelectedDomain(domain) {
+        this.setState({selectedDomain: domain});
+    }
+
     componentDidMount() {
-        Api.getDomainUsageSince('localhost', this.state.sinceDate)
+        Api.getUsageSince(DateUtil.getFurthestDate())
+           .then((response) => {
+               this.setState({domains: response.map(e => e._id)});
+           })
+           .catch((error) => {
+               console.error(error);
+           });
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (!this.state.selectedDomain || prevState.selectedDomain === this.state.selectedDomain) {
+            return;
+        }
+
+        Api.getDomainUsageSince(this.state.selectedDomain, this.state.sinceDate)
            .then((response) => {
                this.setState({aggregateVisits: this.getWeeklyDomainUsageResults(response)});
            })
@@ -36,7 +56,9 @@ export default class DomainUsageLineChartContainer extends Component {
 
     render() {
         return React.createElement(DomainUsageLineChart, {
-            aggregateVisits: this.state.aggregateVisits
+            aggregateVisits: this.state.aggregateVisits,
+            domains: this.state.domains,
+            setSelectedDomain: (domain) => this.setSelectedDomain(domain)
         });
     }
 }
