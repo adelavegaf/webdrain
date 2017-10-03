@@ -1,24 +1,19 @@
 import React, {Component} from 'react';
 import Api from '../utils/Api';
 import DomainUsageLineChart from '../components/DomainUsageLineChart';
+import DateUtil from '../utils/DateUtil';
 
 export default class DomainUsageLineChartContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            aggregateVisits: []
+            aggregateVisits: [],
+            sinceDate: DateUtil.getFirstDayOfPastWeek()
         }
     }
 
     getWeeklyDomainUsageResults(response) {
-        const weeklyUsage = [];
-
-        for (let i = 0; i < 8; i++) {
-            const date = new Date();
-            date.setDate(date.getDate() - 7 + i);
-            date.setHours(0, 0, 0, 0);
-            weeklyUsage.push({date: date, timeSpent: 0});
-        }
+        const weeklyUsage = DateUtil.getLastWeekArray();
 
         response.forEach(usageInDate => {
             const dateInfo = usageInDate._id;
@@ -30,7 +25,7 @@ export default class DomainUsageLineChartContainer extends Component {
     }
 
     componentDidMount() {
-        Api.getDomainUsageSince('localhost', this.props.sinceDate)
+        Api.getDomainUsageSince('localhost', this.state.sinceDate)
            .then((response) => {
                this.setState({aggregateVisits: this.getWeeklyDomainUsageResults(response)});
            })

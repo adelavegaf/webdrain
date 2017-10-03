@@ -24,7 +24,7 @@ export default class App extends Component {
         return (
             <MuiThemeProvider muiTheme={muiTheme}>
                 <div>
-                    <AppBar title="TIME DRAIN"/>
+                    <AppBar title="WEB DRAIN"/>
                     <AccountsUIWrapper/>
                     <StatisticsContainer/>
                 </div>

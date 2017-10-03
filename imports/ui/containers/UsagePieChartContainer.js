@@ -1,13 +1,19 @@
 import React, {Component} from 'react';
 import UsagePieChart from '../components/UsagePieChart';
 import Api from '../utils/Api';
+import DateUtil from '../utils/DateUtil';
 
 export default class UsagePieChartContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            aggregateVisits: []
+            aggregateVisits: [],
+            sinceDate: DateUtil.getFirstDayOfPastWeek()
         }
+    }
+
+    setSinceDate(sinceDate) {
+        this.setState({sinceDate: sinceDate});
     }
 
     convertUsageToTopFivePercentages(response) {
@@ -27,7 +33,20 @@ export default class UsagePieChartContainer extends Component {
     }
 
     componentDidMount() {
-        Api.getUsageSince(this.props.sinceDate)
+        Api.getUsageSince(this.state.sinceDate)
+           .then((response) => {
+               this.setState({aggregateVisits: this.convertUsageToTopFivePercentages(response)});
+           })
+           .catch((error) => {
+               console.error(error);
+           });
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.sinceDate.getTime() === this.state.sinceDate.getTime()) {
+            return;
+        }
+        Api.getUsageSince(this.state.sinceDate)
            .then((response) => {
                this.setState({aggregateVisits: this.convertUsageToTopFivePercentages(response)});
            })
@@ -38,7 +57,8 @@ export default class UsagePieChartContainer extends Component {
 
     render() {
         return React.createElement(UsagePieChart, {
-            aggregateVisits: this.state.aggregateVisits
+            aggregateVisits: this.state.aggregateVisits,
+            setSinceDate: (sinceDate) => this.setSinceDate(sinceDate)
         });
     }
 }

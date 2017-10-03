@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis} from 'recharts';
+import DateFilterContainer from '../containers/DateFilterContainer';
 
 const BAR_COLORS = ['#01579b', '#0277bd', '#0288d1', '#039be5', '#03a9f4'];
 
@@ -26,6 +27,9 @@ export default class FrequencyBarChart extends Component {
                         <Bar dataKey="frequency"/>
                     </BarChart>
                 </ResponsiveContainer>
+                <div className="row justify-content-center">
+                    <DateFilterContainer setSinceDate={(date) => this.props.setSinceDate(date)}/>
+                </div>
             </div>
         );
     }
