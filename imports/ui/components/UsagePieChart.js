@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Legend, Pie, PieChart, ResponsiveContainer, Tooltip} from 'recharts';
 
-const PIE_COLORS = ['#82d962', '#88c1ff', '#cec3ff', '#fff984', '#ff5261'];
+const PIE_COLORS = ['#01579b', '#0277bd', '#0288d1', '#039be5', '#03a9f4'];
 
 export default class UsagePieChart extends Component {
     getPieData() {
