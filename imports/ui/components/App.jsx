@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import FrequencyBarChartContainer from '../containers/FrequencyBarChartContainer';
 import UsagePieChartContainer from '../containers/UsagePieChartContainer';
 import AccountsUIWrapper from '../utils/AccountsUIWrapper';
+import DomainUsageLineChartContainer from '../containers/DomainUsageLineChartContainer';
 
 export default class App extends Component {
 
@@ -11,6 +12,7 @@ export default class App extends Component {
                 <AccountsUIWrapper/>
                 <UsagePieChartContainer sinceDate={new Date(2015, 1, 1)}/>
                 <FrequencyBarChartContainer sinceDate={new Date(2016, 1, 1)}/>
+                <DomainUsageLineChartContainer sinceDate={new Date(2016, 1, 1)}/>
             </div>
         );
     }

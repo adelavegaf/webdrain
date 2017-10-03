@@ -60,6 +60,37 @@ if (Meteor.isServer) {
             );
         }
     });
+
+    Meteor.methods({
+        'visits.getDomainUsage'(hostname, sinceDate) {
+
+            if (!Meteor.userId()) {
+                throw new Meteor.Error('not-authorized');
+            }
+
+            return Visits.aggregate(
+                {
+                    $match: {
+                        dateAccessed: {
+                            $gte: sinceDate
+                        },
+                        hostname: hostname,
+                        owner: Meteor.userId()
+                    }
+                },
+                {
+                    $group: {
+                        _id: {
+                            year: {$year: '$dateAccessed'},
+                            month: {$month: '$dateAccessed'},
+                            day: {$dayOfMonth: '$dateAccessed'},
+                        },
+                        total: {$sum: '$timeSpent'}
+                    }
+                }
+            );
+        }
+    });
 }
 
 Meteor.methods({

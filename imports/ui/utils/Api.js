@@ -22,4 +22,15 @@ export default class Api {
             });
         });
     }
+
+    static getDomainUsageSince(hostname, sinceTimestamp) {
+        return new Promise((resolve, reject) => {
+            Meteor.call('visits.getDomainUsage', hostname, sinceTimestamp, (error, result) => {
+                if (error) {
+                    reject(error);
+                }
+                resolve(result);
+            });
+        });
+    }
 }
