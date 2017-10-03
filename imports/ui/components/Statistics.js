@@ -8,7 +8,7 @@ export default class Statistics extends Component {
 
     wrapContainerInCard(title, subtitle, container) {
         return (
-            <Card>
+            <Card initiallyExpanded={true}>
                 <CardHeader
                     title={title}
                     subtitle={subtitle}
@@ -24,22 +24,24 @@ export default class Statistics extends Component {
 
     render() {
         return (
-            <div>
-                {
-                    this.wrapContainerInCard('Time spent on websites',
-                        'Ratio between time spent on website and total time spent on the web',
-                        <UsagePieChartContainer sinceDate={new Date(2015, 1, 1)}/>)
-                }
-                {
-                    this.wrapContainerInCard('Website visit frequency',
-                        'Top five websites you have visited frequently',
-                        <FrequencyBarChartContainer sinceDate={new Date(2015, 1, 1)}/>)
-                }
-                {
-                    this.wrapContainerInCard('Time spent on a domain',
-                        'Shows how your usage of a particular domain has changed through the past week.',
-                        <DomainUsageLineChartContainer sinceDate={new Date(2015, 1, 1)}/>)
-                }
+            <div className="row justify-content-center">
+                <div className="col-12 col-md-8 col-lg-6">
+                    {
+                        this.wrapContainerInCard('Time spent on websites',
+                            'Ratio between time spent on website and total time spent on the web',
+                            <UsagePieChartContainer sinceDate={new Date(2015, 1, 1)}/>)
+                    }
+                    {
+                        this.wrapContainerInCard('Website visit frequency',
+                            'Top five websites you have visited frequently',
+                            <FrequencyBarChartContainer sinceDate={new Date(2015, 1, 1)}/>)
+                    }
+                    {
+                        this.wrapContainerInCard('Time spent on a domain',
+                            'Shows how your usage of a particular domain has changed through the past week.',
+                            <DomainUsageLineChartContainer sinceDate={new Date(2015, 1, 1)}/>)
+                    }
+                </div>
             </div>
         );
     }
