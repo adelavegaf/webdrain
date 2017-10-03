@@ -23,7 +23,6 @@ export default class DomainUsageLineChartContainer extends Component {
         response.forEach(usageInDate => {
             const dateInfo = usageInDate._id;
             const date = new Date(dateInfo.year, dateInfo.month - 1, dateInfo.day);
-            console.log(weeklyUsage, date);
             weeklyUsage.find((val) => val.date.getTime() === date.getTime()).timeSpent = usageInDate.total;
         });
 

@@ -1,14 +1,13 @@
 import React, {Component} from 'react';
 import {CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis} from 'recharts';
 
-const BAR_COLORS = ['#82d962', '#88c1ff', '#cec3ff', '#fff984', '#ff5261'];
-
+const WEEK_DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 export default class DomainUsageLineChart extends Component {
     getLineData() {
         return this.props.aggregateVisits.map((e) => {
             return {
-                date: e.date.toString(),
-                timeSpent: e.timeSpent,
+                date: WEEK_DAYS[e.date.getDay()],
+                timeSpent: e.timeSpent / 1000,
             };
         });
     }
