@@ -10,7 +10,12 @@ if (Meteor.isServer) {
     });
 
     Meteor.methods({
-        'visits.timeSpentSince'(sinceDate) {
+        'visits.timeSpentSince'(sinceDate, dateOffset = 0) {
+            // Only if an offset is specified we ignore the sinceDate parameter.
+            if (dateOffset > 0) {
+                sinceDate = new Date();
+                sinceDate.setDate(sinceDate.getDate() - dateOffset);
+            }
 
             if (!Meteor.userId()) {
                 throw new Meteor.Error('not-authorized');
@@ -36,7 +41,13 @@ if (Meteor.isServer) {
     });
 
     Meteor.methods({
-        'visits.frequencySince'(sinceDate) {
+        'visits.frequencySince'(sinceDate, dateOffset = 0) {
+
+            // Only if an offset is specified we ignore the sinceDate parameter.
+            if (dateOffset > 0) {
+                sinceDate = new Date();
+                sinceDate.setDate(sinceDate.getDate() - dateOffset);
+            }
 
             if (!Meteor.userId()) {
                 throw new Meteor.Error('not-authorized');
@@ -62,7 +73,13 @@ if (Meteor.isServer) {
     });
 
     Meteor.methods({
-        'visits.getDomainUsage'(hostname, sinceDate) {
+        'visits.getDomainUsage'(hostname, sinceDate, dateOffset = 0) {
+
+            // Only if an offset is specified we ignore the sinceDate parameter.
+            if (dateOffset > 0) {
+                sinceDate = new Date();
+                sinceDate.setDate(sinceDate.getDate() - dateOffset);
+            }
 
             if (!Meteor.userId()) {
                 throw new Meteor.Error('not-authorized');
