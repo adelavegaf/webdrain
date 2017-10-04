@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import Api from '../utils/Api';
 import DateUtil from '../utils/DateUtil';
-import GeneralUsage from '../components/GeneralUsage';
+import GeneralFrequency from '../components/GeneralFrequency';
 
-export default class GeneralUsageContainer extends Component {
+export default class GeneralFrequencyContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -23,38 +23,37 @@ export default class GeneralUsageContainer extends Component {
     }
 
     getTopFivePercentages(response) {
-        const totalTime = response.reduce((total, cur) => total + cur.total, 0);
-        const percentages = response.map((cur) => {
-            let percentage = cur.total / totalTime;
-            return {hostname: cur._id, percentage: percentage};
+        const totalFrequency = response.reduce((total, cur) => total + cur.total, 0);
+        const sortedResponse = response.sort((a, b) => b.total - a.total);
+        const percentages = sortedResponse.slice(0, 4);
+        const otherDomainsFrequency = totalFrequency - percentages.reduce((total, cur) => total + cur.total, 0);
+        percentages.push({'_id': 'Other Domains', 'total': otherDomainsFrequency});
+        console.log(percentages);
+        return percentages.map(e => {
+            return {
+                hostname: e._id,
+                percentage: e.total / totalFrequency
+            }
         });
-        const sortedPercentages = percentages.sort((a, b) => b.percentage - a.percentage);
-        const parsedPercentages = sortedPercentages.slice(0, 4);
-        let otherPercentage = 0;
-        for (let i = 4; i < sortedPercentages.length; i++) {
-            otherPercentage += sortedPercentages[i].percentage;
-        }
-        parsedPercentages.push({hostname: 'Other Domains', percentage: otherPercentage});
-        return parsedPercentages;
     }
 
-    getTopFiveTotals(response) {
+    getTopFiveFrequencies(response) {
         return response.sort((a, b) => b.total - a.total)
                        .slice(0, 5)
-                       .map(value => {
+                       .map(e => {
                            return {
-                               hostname: value._id,
-                               total: value.total / 1000
+                               hostname: e._id,
+                               frequency: e.total
                            };
                        });
     }
 
     componentDidMount() {
-        Api.getUsageSince(this.state.sinceDate)
+        Api.getFrequencySince(this.state.sinceDate)
            .then((response) => {
                this.setState({
                    percentages: this.getTopFivePercentages(response),
-                   totals: this.getTopFiveTotals(response)
+                   totals: this.getTopFiveFrequencies(response)
                });
            })
            .catch((error) => {
@@ -66,11 +65,11 @@ export default class GeneralUsageContainer extends Component {
         if (prevState.sinceDate.getTime() === this.state.sinceDate.getTime()) {
             return;
         }
-        Api.getUsageSince(this.state.sinceDate)
+        Api.getFrequencySince(this.state.sinceDate)
            .then((response) => {
                this.setState({
                    percentages: this.getTopFivePercentages(response),
-                   totals: this.getTopFiveTotals(response)
+                   totals: this.getTopFiveFrequencies(response)
                });
            })
            .catch((error) => {
@@ -79,7 +78,7 @@ export default class GeneralUsageContainer extends Component {
     }
 
     render() {
-        return React.createElement(GeneralUsage, {
+        return React.createElement(GeneralFrequency, {
             percentages: this.state.percentages,
             totals: this.state.totals,
             selectedIndex: this.state.selectedIndex,

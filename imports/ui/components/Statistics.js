@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import FrequencyBarChartContainer from '../containers/FrequencyBarChartContainer';
-import UsagePieChartContainer from '../containers/GeneralUsageContainer';
+import GeneralUsageContainer from '../containers/GeneralUsageContainer';
 import DomainUsageLineChartContainer from '../containers/DomainUsageLineChartContainer';
 import {Card, CardHeader, CardText} from 'material-ui/Card';
 import './Statistics.css';
+import GeneralFrequencyContainer from '../containers/GeneralFrequencyContainer';
 
 export default class Statistics extends Component {
 
@@ -32,12 +32,12 @@ export default class Statistics extends Component {
                     {
                         this.wrapContainerInCard('Time spent on websites',
                             'Ratio between time spent on a particular domain and total time spent on the web',
-                            <UsagePieChartContainer/>)
+                            <GeneralUsageContainer/>)
                     }
                     {
                         this.wrapContainerInCard('Website visit frequency',
                             'The five websites you visit most frequently',
-                            <FrequencyBarChartContainer/>)
+                            <GeneralFrequencyContainer/>)
                     }
                     {
                         this.wrapContainerInCard('Time spent on a website',
