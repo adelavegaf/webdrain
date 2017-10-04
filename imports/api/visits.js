@@ -101,10 +101,11 @@ Meteor.methods({
         if (!Meteor.userId()) {
             throw new Meteor.Error('not-authorized');
         }
-
+        const now = new Date();
         return Visits.insert({
             hostname: hostname,
-            dateAccessed: new Date(),
+            dateAccessed: now,
+            timezoneOffset: now.getTimezoneOffset(),
             timeSpent: timeSpent,
             owner: Meteor.userId(),
             username: Meteor.user().username,

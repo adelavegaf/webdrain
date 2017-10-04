@@ -16,10 +16,11 @@ export default class DomainUsageLineChartContainer extends Component {
 
     getWeeklyDomainUsageResults(response) {
         const weeklyUsage = DateUtil.getLastWeekArray();
-
         response.forEach(usageInDate => {
             const dateInfo = usageInDate._id;
-            const date = new Date(dateInfo.year, dateInfo.month - 1, dateInfo.day);
+            // HACK: This won't fix the timezone issue with MongoDB.
+            const date = new Date(Date.UTC(dateInfo.year, dateInfo.month - 1, dateInfo.day));
+            date.setHours(0,0,0,0);
             weeklyUsage.find((val) => val.date.getTime() === date.getTime()).timeSpent = usageInDate.total;
         });
 
