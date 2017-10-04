@@ -16,6 +16,10 @@ const muiTheme = getMuiTheme({
     }
 });
 
+const titleStyle = {
+    'fontWeight': 300,
+    'fontSize': '32px'
+};
 
 export default class App extends Component {
 
@@ -29,7 +33,7 @@ export default class App extends Component {
         return (
             <MuiThemeProvider muiTheme={muiTheme}>
                 <div>
-                    <AppBar title="WEB DRAIN"
+                    <AppBar title="WEB DRAIN" titleStyle={titleStyle}
                             showMenuIconButton={false}
                             iconElementRight={this.props.currentUser ? this.getLogOutButton() : <div></div>}/>
                     {

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Legend, Pie, PieChart, ResponsiveContainer, Tooltip} from 'recharts';
 import DateFilterContainer from '../containers/DateFilterContainer';
 
-const PIE_COLORS = ['#01579b', '#0277bd', '#0288d1', '#039be5', '#03a9f4'];
+const PIE_COLORS = ['#fff64f', '#ffc400', '#c79400', '#6c6f00', '#cddc39'];
 
 export default class UsagePieChart extends Component {
     getPieData() {
@@ -24,8 +24,12 @@ export default class UsagePieChart extends Component {
             <div>
                 <ResponsiveContainer height={300}>
                     <PieChart>
-                        <Pie dataKey="value" data={this.getPieData()}
-                             isAnimationActive={true}/>
+                        <Pie dataKey="value"
+                             data={this.getPieData()}
+                             isAnimationActive={true}
+                             innerRadius={60}
+                             outerRadius={80}
+                        />
                         <Tooltip formatter={this.formatTooltipValue}/>
                         <Legend verticalAlign="bottom"/>
                     </PieChart>

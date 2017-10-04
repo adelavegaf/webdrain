@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis} from 'recharts';
 import DateFilterContainer from '../containers/DateFilterContainer';
 
-const BAR_COLORS = ['#01579b', '#0277bd', '#0288d1', '#039be5', '#03a9f4'];
+const BAR_COLORS = ['#6c6f00', '#cddc39', '#fff64f', '#ffc400', '#c79400'];
 
 export default class FrequencyBarChart extends Component {
     getBarData() {
