@@ -1,4 +1,10 @@
 /* CSS declarations go here */
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', sans-serif !important;
+    background-color: #eee !important;
+    height: 100%;
+}
+
+html {
+    height: 100%;
 }

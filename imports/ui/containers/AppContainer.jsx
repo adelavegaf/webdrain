@@ -8,9 +8,19 @@ class AppContainer extends Component {
         super(props);
     }
 
+    onLogIn(username, password) {
+        Meteor.loginWithPassword(username, password);
+    }
+
+    onLogOut() {
+        Meteor.logout();
+    }
+
     render() {
         return React.createElement(App, {
             currentUser: this.props.currentUser,
+            onLogIn: (username, password) => this.onLogIn(username, password),
+            onLogOut: () => this.onLogOut()
         });
     }
 }

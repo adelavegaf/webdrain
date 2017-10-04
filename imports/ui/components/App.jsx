@@ -1,32 +1,41 @@
 import React, {Component} from 'react';
-import AccountsUIWrapper from '../utils/AccountsUIWrapper';
-import {AppBar} from 'material-ui';
+import {AppBar, FlatButton} from 'material-ui';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import StatisticsContainer from '../containers/StatisticsContainer';
-
+import LandingPageContainer from '../containers/LandingPageContainer';
 
 const muiTheme = getMuiTheme({
     palette: {
-        primary1Color: '#fafafa',
-        primary2Color: '#c7c7c7',
-        primary3Color: '#ffffff',
-        accent1Color: '#01579b',
-        accent2Color: '#002f6c',
-        accent3Color: '#4f83cc',
-        alternateTextColor: '#01579b',
+        primary1Color: '#00bbd3',
+        primary2Color: '#62eeff',
+        primary3Color: '#008ba2',
+        accent1Color: '#ffc400',
+        accent2Color: '#fff64f',
+        accent3Color: '#c79400',
     }
 });
 
 
 export default class App extends Component {
+
+    getLogOutButton() {
+        return (
+            <FlatButton label="Logout" onClick={() => this.props.onLogOut()}/>
+        );
+    }
+
     render() {
         return (
             <MuiThemeProvider muiTheme={muiTheme}>
                 <div>
-                    <AppBar title="WEB DRAIN"/>
-                    <AccountsUIWrapper/>
-                    <StatisticsContainer/>
+                    <AppBar title="WEB DRAIN"
+                            showMenuIconButton={false}
+                            iconElementRight={this.props.currentUser ? this.getLogOutButton() : <div></div>}/>
+                    {
+                        this.props.currentUser ? <StatisticsContainer/> :
+                        <LandingPageContainer onLogIn={(username, password) => this.props.onLogIn(username, password)}/>
+                    }
                 </div>
             </MuiThemeProvider>
         );
