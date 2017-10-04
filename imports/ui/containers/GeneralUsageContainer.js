@@ -1,19 +1,25 @@
 import React, {Component} from 'react';
-import UsagePieChart from '../components/UsagePieChart';
 import Api from '../utils/Api';
 import DateUtil from '../utils/DateUtil';
+import GeneralUsage from '../components/GeneralUsage';
 
 export default class UsagePieChartContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            aggregateVisits: [],
+            percentages: [],
+            totals: [],
+            selectedIndex: 0,
             sinceDate: DateUtil.getFirstDayOfPastWeek()
         }
     }
 
     setSinceDate(sinceDate) {
         this.setState({sinceDate: sinceDate});
+    }
+
+    setSelectedIndex(index) {
+        this.setState({selectedIndex: index});
     }
 
     convertUsageToTopFivePercentages(response) {
@@ -32,10 +38,22 @@ export default class UsagePieChartContainer extends Component {
         return parsedPercentages;
     }
 
+    convertUsageToTopFiveTotals(response) {
+        return response.map(value => {
+            return {
+                hostname: value._id,
+                total: value.total/1000
+            };
+        }).sort((a, b) => b.total - a.total).slice(0, 5);
+    }
+
     componentDidMount() {
         Api.getUsageSince(this.state.sinceDate)
            .then((response) => {
-               this.setState({aggregateVisits: this.convertUsageToTopFivePercentages(response)});
+               this.setState({
+                   percentages: this.convertUsageToTopFivePercentages(response),
+                   totals: this.convertUsageToTopFiveTotals(response)
+               });
            })
            .catch((error) => {
                console.error(error);
@@ -48,7 +66,10 @@ export default class UsagePieChartContainer extends Component {
         }
         Api.getUsageSince(this.state.sinceDate)
            .then((response) => {
-               this.setState({aggregateVisits: this.convertUsageToTopFivePercentages(response)});
+               this.setState({
+                   percentages: this.convertUsageToTopFivePercentages(response),
+                   totals: this.convertUsageToTopFiveTotals(response)
+               });
            })
            .catch((error) => {
                console.error(error);
@@ -56,9 +77,12 @@ export default class UsagePieChartContainer extends Component {
     }
 
     render() {
-        return React.createElement(UsagePieChart, {
-            aggregateVisits: this.state.aggregateVisits,
-            setSinceDate: (sinceDate) => this.setSinceDate(sinceDate)
+        return React.createElement(GeneralUsage, {
+            percentages: this.state.percentages,
+            totals: this.state.totals,
+            selectedIndex: this.state.selectedIndex,
+            onSelectedIndexChange: (index) => this.setSelectedIndex(index),
+            onSinceDateChange: (date) => this.setSinceDate(date)
         });
     }
 }

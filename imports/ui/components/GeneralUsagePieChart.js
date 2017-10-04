@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import {Legend, Pie, PieChart, ResponsiveContainer, Tooltip} from 'recharts';
-import DateFilterContainer from '../containers/DateFilterContainer';
 
 const PIE_COLORS = ['#fff64f', '#ffc400', '#c79400', '#6c6f00', '#cddc39'];
 
-export default class UsagePieChart extends Component {
+export default class GeneralUsagePieChart extends Component {
     getPieData() {
-        return this.props.aggregateVisits.map((e, index) => {
+        return this.props.percentages.map((e, index) => {
             return {
                 name: e.hostname,
                 value: Number(parseFloat(e.percentage * 100).toFixed(0)),
@@ -34,9 +33,6 @@ export default class UsagePieChart extends Component {
                         <Legend verticalAlign="bottom"/>
                     </PieChart>
                 </ResponsiveContainer>
-                <div className="row justify-content-center">
-                    <DateFilterContainer setSinceDate={(date) => this.props.setSinceDate(date)}/>
-                </div>
             </div>
         );
     }
