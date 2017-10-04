@@ -28,7 +28,6 @@ export default class GeneralFrequencyContainer extends Component {
         const percentages = sortedResponse.slice(0, 4);
         const otherDomainsFrequency = totalFrequency - percentages.reduce((total, cur) => total + cur.total, 0);
         percentages.push({'_id': 'Other Domains', 'total': otherDomainsFrequency});
-        console.log(percentages);
         return percentages.map(e => {
             return {
                 hostname: e._id,

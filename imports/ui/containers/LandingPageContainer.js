@@ -23,12 +23,17 @@ export default class LandingPageContainer extends Component {
         this.props.onLogIn(this.state.username, this.state.password);
     }
 
+    onRegister() {
+        this.props.onRegister(this.state.username, this.state.password);
+    }
+
     render() {
         return React.createElement(LandingPage, {
             authenticationError: this.state.authenticationError,
             onUserNameChange: (value) => this.onUserNameChange(value),
             onPasswordChange: (value) => this.onPasswordChange(value),
-            onLogIn: () => this.onLogIn()
+            onLogIn: () => this.onLogIn(),
+            onRegister: () => this.onRegister()
         });
     }
 }

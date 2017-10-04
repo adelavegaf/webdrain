@@ -8,6 +8,13 @@ class AppContainer extends Component {
         super(props);
     }
 
+    onRegister(username, password) {
+        Accounts.createUser({
+            username: username,
+            password: password
+        });
+    }
+
     onLogIn(username, password) {
         Meteor.loginWithPassword(username, password);
     }
@@ -19,6 +26,7 @@ class AppContainer extends Component {
     render() {
         return React.createElement(App, {
             currentUser: this.props.currentUser,
+            onRegister: (username, password) => this.onRegister(username, password),
             onLogIn: (username, password) => this.onLogIn(username, password),
             onLogOut: () => this.onLogOut()
         });

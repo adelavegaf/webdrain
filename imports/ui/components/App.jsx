@@ -38,7 +38,9 @@ export default class App extends Component {
                             iconElementRight={this.props.currentUser ? this.getLogOutButton() : <div></div>}/>
                     {
                         this.props.currentUser ? <StatisticsContainer/> :
-                        <LandingPageContainer onLogIn={(username, password) => this.props.onLogIn(username, password)}/>
+                        <LandingPageContainer onLogIn={(username, password) => this.props.onLogIn(username, password)}
+                                              onRegister={(username, password) => this.props.onRegister(username,
+                                                  password)}/>
                     }
                 </div>
             </MuiThemeProvider>

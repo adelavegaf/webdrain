@@ -26,6 +26,7 @@ export default class LandingPage extends Component {
                         </div>
                         <div className="row justify-content-center">
                             <RaisedButton label="Log In" secondary={true} onClick={() => this.props.onLogIn()}/>
+                            <RaisedButton label="Register" secondary={true} onClick={() => this.props.onRegister()}/>
                         </div>
                     </CardText>
                 </Card>
