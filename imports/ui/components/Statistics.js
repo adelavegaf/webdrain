@@ -31,12 +31,12 @@ export default class Statistics extends Component {
                 <div className="col-12 col-md-8 col-lg-6">
                     {
                         this.wrapContainerInCard('Time spent on websites',
-                            'Ratio between time spent on a particular domain and total time spent on the web',
+                            'Shows statistics related to the time you spend on each domain',
                             <GeneralUsageContainer/>)
                     }
                     {
                         this.wrapContainerInCard('Website visit frequency',
-                            'The five websites you visit most frequently',
+                            'Shows statistics related to the number of times you visit each domain',
                             <GeneralFrequencyContainer/>)
                     }
                     {
