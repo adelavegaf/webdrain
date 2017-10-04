@@ -3,6 +3,9 @@ import {Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis
 
 const BAR_COLORS = ['#6c6f00', '#cddc39', '#fff64f', '#ffc400', '#c79400'];
 
+const CHART_MARGINS = {top: 20, right: 30, bottom: 5, left: 20};
+
+
 export default class GeneralFrequencyBarChart extends Component {
     getBarData() {
         return this.props.totals.map((e, index) => {
@@ -18,7 +21,7 @@ export default class GeneralFrequencyBarChart extends Component {
         return (
             <div>
                 <ResponsiveContainer height={300}>
-                    <BarChart data={this.getBarData()} margin={{top: 20, right: 30, left: 20, bottom: 5}}>
+                    <BarChart data={this.getBarData()} margin={CHART_MARGINS}>
                         <XAxis dataKey="name"/>
                         <YAxis/>
                         <CartesianGrid strokeDasharray="3 3"/>

@@ -4,7 +4,7 @@ import DateFilterContainer from '../containers/DateFilterContainer';
 
 const BAR_COLORS = ['#6c6f00', '#cddc39', '#fff64f', '#ffc400', '#c79400'];
 
-const CHART_MARGINS = {top: 10, right: 10, bottom: 10, left: 10};
+const CHART_MARGINS = {top: 20, right: 30, bottom: 5, left: 20};
 export default class GeneralUsageBarChart extends Component {
     getBarData() {
         return this.props.totals.map((e, index) => {
@@ -20,7 +20,7 @@ export default class GeneralUsageBarChart extends Component {
         return (
             <div>
                 <ResponsiveContainer height={300}>
-                    <BarChart data={this.getBarData()} margin={{top: 20, right: 30, left: 20, bottom: 5}}>
+                    <BarChart data={this.getBarData()} margin={CHART_MARGINS}>
                         <XAxis dataKey="name"/>
                         <YAxis/>
                         <CartesianGrid strokeDasharray="3 3"/>

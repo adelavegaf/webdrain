@@ -14,6 +14,27 @@ export default class DomainUsageLineChart extends Component {
         });
     }
 
+    getLineChart() {
+        console.log(this.props.aggregateVisits);
+        return (
+            <ResponsiveContainer height={300}>
+                <LineChart data={this.getLineData()}>
+                    <XAxis dataKey="date"/>
+                    <YAxis/>
+                    <CartesianGrid strokeDasharray="3 3"/>
+                    <Tooltip/>
+                    <Line dataKey="timeSpent"/>
+                </LineChart>
+            </ResponsiveContainer>
+        );
+    }
+
+    getNoDataMessage() {
+        return (
+            <div/>
+        )
+    }
+
     render() {
         return (
             <div>
@@ -27,15 +48,9 @@ export default class DomainUsageLineChart extends Component {
                         onUpdateInput={(domain) => this.props.setSelectedDomain(domain)}
                     />
                 </div>
-                <ResponsiveContainer height={300}>
-                    <LineChart data={this.getLineData()}>
-                        <XAxis dataKey="date"/>
-                        <YAxis/>
-                        <CartesianGrid strokeDasharray="3 3"/>
-                        <Tooltip/>
-                        <Line dataKey="timeSpent"/>
-                    </LineChart>
-                </ResponsiveContainer>
+                {
+                    this.props.aggregateVisits.length === 0 ? this.getNoDataMessage() : this.getLineChart()
+                }
             </div>
         );
     }

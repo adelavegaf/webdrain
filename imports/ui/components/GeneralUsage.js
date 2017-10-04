@@ -3,6 +3,7 @@ import {BottomNavigation, BottomNavigationItem, FontIcon, Paper} from 'material-
 import GeneralUsagePieChart from './GeneralUsagePieChart';
 import DateFilterContainer from '../containers/DateFilterContainer';
 import GeneralUsageBarChart from './GeneralUsageBarChart';
+import './GeneralUsage.css';
 
 const barIcon = <FontIcon className="material-icons">insert_chart</FontIcon>;
 const pieIcon = <FontIcon className="material-icons">pie_chart</FontIcon>;
@@ -13,6 +14,14 @@ const PIE_CHART_INDEX = 1;
 export default class GeneralUsage extends Component {
 
     chooseChart() {
+        if (this.props.totals.length === 0) {
+            return (
+                <div className="error-message">
+                    <div>We currently don't possess information to provide you with these statistics</div>
+                    <div>Make sure you have our extension installed and enabled</div>
+                </div>
+            );
+        }
         switch (this.props.selectedIndex) {
             case BAR_CHART_INDEX:
                 return <GeneralUsageBarChart totals={this.props.totals}/>;
