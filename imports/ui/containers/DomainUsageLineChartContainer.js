@@ -20,7 +20,7 @@ export default class DomainUsageLineChartContainer extends Component {
             const dateInfo = usageInDate._id;
             // HACK: This won't fix the timezone issue with MongoDB.
             const date = new Date(Date.UTC(dateInfo.year, dateInfo.month - 1, dateInfo.day));
-            date.setHours(0,0,0,0);
+            date.setHours(0, 0, 0, 0);
             weeklyUsage.find((val) => val.date.getTime() === date.getTime()).timeSpent = usageInDate.total;
         });
 
@@ -29,6 +29,19 @@ export default class DomainUsageLineChartContainer extends Component {
 
     setSelectedDomain(domain) {
         this.setState({selectedDomain: domain});
+    }
+
+    /**
+     * Fills the autocomplete values.
+     */
+    componentDidMount() {
+        Api.getUsageSince(DateUtil.getFurthestDate())
+           .then((response) => {
+               this.setState({domains: response.map(e => e._id)});
+           })
+           .catch((error) => {
+               console.error(error);
+           });
     }
 
     componentDidUpdate(prevProps, prevState) {

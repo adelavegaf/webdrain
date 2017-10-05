@@ -36,6 +36,11 @@ export default class Statistics extends Component {
                             <ExtensionInformationContainer/>)
                     }
                     {
+                        this.wrapContainerInCard('Time spent on a website',
+                            'Shows statistics related to the usage of a particular domain through the past week',
+                            <DomainUsageLineChartContainer/>)
+                    }
+                    {
                         this.wrapContainerInCard('Time spent on websites',
                             'Shows statistics related to the time you have spent on each domain',
                             <GeneralUsageContainer/>)
@@ -44,11 +49,6 @@ export default class Statistics extends Component {
                         this.wrapContainerInCard('Website visit frequency',
                             'Shows statistics related to the number of times you have visited each domain',
                             <GeneralFrequencyContainer/>)
-                    }
-                    {
-                        this.wrapContainerInCard('Time spent on a website',
-                            'Shows statistics related to the usage of a particular domain through the past week',
-                            <DomainUsageLineChartContainer/>)
                     }
                 </div>
             </div>

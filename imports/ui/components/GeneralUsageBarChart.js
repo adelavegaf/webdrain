@@ -16,6 +16,10 @@ export default class GeneralUsageBarChart extends Component {
         });
     }
 
+    formatTooltipValue(value) {
+        return value + 'min';
+    }
+
     render() {
         return (
             <div>
@@ -24,7 +28,7 @@ export default class GeneralUsageBarChart extends Component {
                         <XAxis dataKey="name"/>
                         <YAxis/>
                         <CartesianGrid strokeDasharray="3 3"/>
-                        <Tooltip/>
+                        <Tooltip formatter={this.formatTooltipValue}/>
                         <Bar dataKey="time" barSize={12}/>
                     </BarChart>
                 </ResponsiveContainer>

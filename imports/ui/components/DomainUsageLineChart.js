@@ -1,29 +1,38 @@
 import React, {Component} from 'react';
 import {CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis} from 'recharts';
 import AutoComplete from 'material-ui/AutoComplete';
+import {debounce} from 'lodash';
 
 const WEEK_DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 export default class DomainUsageLineChart extends Component {
+    constructor(props) {
+        super(props);
+        this.onSearchUpdate = debounce(this.props.setSelectedDomain, 1000);
+    }
+
     getLineData() {
         return this.props.aggregateVisits.map((e) => {
             return {
                 date: WEEK_DAYS[e.date.getDay()],
-                timeSpent: e.timeSpent / 1000,
+                time: Number(parseFloat(e.timeSpent / 60000).toFixed(0)),
             };
         });
     }
 
+    formatTooltipValue(value) {
+        return value + 'min';
+    }
+
     getLineChart() {
-        console.log(this.props.aggregateVisits);
         return (
             <ResponsiveContainer height={300}>
                 <LineChart data={this.getLineData()}>
                     <XAxis dataKey="date"/>
                     <YAxis/>
                     <CartesianGrid strokeDasharray="3 3"/>
-                    <Tooltip/>
-                    <Line dataKey="timeSpent"/>
+                    <Tooltip formatter={this.formatTooltipValue}/>
+                    <Line dataKey="time"/>
                 </LineChart>
             </ResponsiveContainer>
         );
@@ -45,7 +54,7 @@ export default class DomainUsageLineChart extends Component {
                         dataSource={this.props.domains}
                         maxSearchResults={5}
                         openOnFocus={true}
-                        onUpdateInput={(domain) => this.props.setSelectedDomain(domain)}
+                        onUpdateInput={(domain) => this.onSearchUpdate(domain)}
                     />
                 </div>
                 {

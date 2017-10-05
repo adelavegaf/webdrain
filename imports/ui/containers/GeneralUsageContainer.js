@@ -44,7 +44,7 @@ export default class GeneralUsageContainer extends Component {
                        .map(value => {
                            return {
                                hostname: value._id,
-                               total: value.total / 1000
+                               total: Number(parseFloat(value.total / 60000).toFixed(0))
                            };
                        });
     }
