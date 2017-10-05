@@ -6,13 +6,16 @@ export default class DateFilterContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentDateFilter: 'week'
+            currentDateFilter: 'day'
         };
     }
 
     setCurrentDateFilter(value) {
         let firstDate = new Date();
         switch (value) {
+            case 'day':
+                firstDate = DateUtil.getYesterday();
+                break;
             case 'week':
                 firstDate = DateUtil.getFirstDayOfPastWeek();
                 break;

@@ -12,6 +12,7 @@ export default class DateFilter extends Component {
             <div>
                 <SelectField floatingLabelText="Show results since" value={this.props.currentDateFilter}
                              onChange={(event, index, value) => this.onDateFilterChange(value)}>
+                    <MenuItem value="day" primaryText="Past Day"/>
                     <MenuItem value="week" primaryText="Past Week"/>
                     <MenuItem value="month" primaryText="Past Month"/>
                     <MenuItem value="year" primaryText="Past Year"/>

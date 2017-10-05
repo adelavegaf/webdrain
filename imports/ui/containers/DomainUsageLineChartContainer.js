@@ -31,16 +31,6 @@ export default class DomainUsageLineChartContainer extends Component {
         this.setState({selectedDomain: domain});
     }
 
-    componentDidMount() {
-        Api.getUsageSince(DateUtil.getFurthestDate())
-           .then((response) => {
-               this.setState({domains: response.map(e => e._id)});
-           })
-           .catch((error) => {
-               console.error(error);
-           });
-    }
-
     componentDidUpdate(prevProps, prevState) {
         if (!this.state.selectedDomain || prevState.selectedDomain === this.state.selectedDomain) {
             return;
