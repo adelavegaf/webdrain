@@ -4,7 +4,7 @@ import DomainUsageLineChartContainer from '../containers/DomainUsageLineChartCon
 import {Card, CardHeader, CardText} from 'material-ui/Card';
 import './Statistics.css';
 import GeneralFrequencyContainer from '../containers/GeneralFrequencyContainer';
-import GeneralInformationContainer from '../containers/GeneralInformationContainer';
+import ExtensionInformationContainer from '../containers/ExtensionInformationContainer';
 
 export default class Statistics extends Component {
 
@@ -31,9 +31,9 @@ export default class Statistics extends Component {
             <div className="row justify-content-center">
                 <div className="col-12 col-md-8 col-lg-6">
                     {
-                        this.wrapContainerInCard('General Information',
-                            'Shows the status of our extension among other things',
-                            <GeneralInformationContainer/>)
+                        this.wrapContainerInCard('Extension Information',
+                            'Shows the status of our extension',
+                            <ExtensionInformationContainer/>)
                     }
                     {
                         this.wrapContainerInCard('Time spent on websites',

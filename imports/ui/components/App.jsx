@@ -7,7 +7,7 @@ import LandingPageContainer from '../containers/LandingPageContainer';
 
 const muiTheme = getMuiTheme({
     palette: {
-        primary1Color: '#00bbd3',
+        primary1Color: '#00bbd4',
         primary2Color: '#62eeff',
         primary3Color: '#008ba2',
         accent1Color: '#ffc400',
