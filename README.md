@@ -1,6 +1,6 @@
 # WebDrain
 
-Meteor web application that shows you statistics related to the time you have spent visiting websites in Google Chrome. These statistics are obtained through our Chrome Extension that is left in a seperate repository.
+Meteor web application that shows you statistics related to the time you have spent visiting websites in Google Chrome. These statistics are obtained through our Chrome Extension that is left in a separate repository.
 
 ## Development
 
