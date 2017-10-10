@@ -1,3 +1,7 @@
+//Aunque no lo entienda completamente me parece muy interesante que la mayoria de los componentes sean .js y no .jsx (que sublime no lea el formato .jsx me molesta mucho) y que puedas llamar simplemente al metodo React.createElement para crear cualquier componente. 
+//La aplicacion no me quizo compilar localmente y no pude registrarme en el demo asi que no puedo opinar sobre el diseño o la funcionalidad :(
+//Como siempre un codigo muy facil de leer pero me causa curiosidad saber como funciona toda la aplicacion, como se comunica con la otra y como guarda los registros de las paginas que se visitan
+
 import React, {Component} from 'react';
 import {AppBar, FlatButton} from 'material-ui';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
