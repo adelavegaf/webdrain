@@ -1,6 +1,6 @@
 import {Meteor} from 'meteor/meteor';
 import {Mongo} from 'meteor/mongo';
-import {check, Match} from 'meteor/check';
+import {check} from 'meteor/check';
 
 const Visits = new Mongo.Collection('visits');
 
