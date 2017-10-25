@@ -36,7 +36,7 @@ if (Meteor.isServer) {
 
             return userGoals;
         },
-        getGoalStatus(hostname, sinceDate) {
+        getGoalStatus(sinceDate, hostname) {
 
             if (!Meteor.userId()) {
                 throw new Meteor.Error('not-authorized');
