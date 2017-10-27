@@ -10,11 +10,11 @@ if (Meteor.isServer) {
     });
 
     Meteor.methods({
-        'visits.timeSpentSince'(sinceDate, dateOffset = 0) {
-            // Only if an offset is specified we ignore the sinceDate parameter.
-            if (dateOffset > 0) {
-                sinceDate = new Date();
-                sinceDate.setDate(sinceDate.getDate() - dateOffset);
+        'visits.timeSpentSince'(sinceDate) {
+
+            // Extension uses Asteroid that serializes date differently than Meteor. Must perform this check.
+            if (!(sinceDate instanceof Date)) {
+                sinceDate = new Date(sinceDate);
             }
 
             if (!Meteor.userId()) {
@@ -41,12 +41,11 @@ if (Meteor.isServer) {
     });
 
     Meteor.methods({
-        'visits.frequencySince'(sinceDate, dateOffset = 0) {
+        'visits.frequencySince'(sinceDate) {
 
-            // Only if an offset is specified we ignore the sinceDate parameter.
-            if (dateOffset > 0) {
-                sinceDate = new Date();
-                sinceDate.setDate(sinceDate.getDate() - dateOffset);
+            // Extension uses Asteroid that serializes date differently than Meteor. Must perform this check.
+            if (!(sinceDate instanceof Date)) {
+                sinceDate = new Date(sinceDate);
             }
 
             if (!Meteor.userId()) {
@@ -73,12 +72,11 @@ if (Meteor.isServer) {
     });
 
     Meteor.methods({
-        'visits.getDomainUsage'(hostname, sinceDate, dateOffset = 0) {
+        'visits.getDomainUsage'(hostname, sinceDate) {
 
-            // Only if an offset is specified we ignore the sinceDate parameter.
-            if (dateOffset > 0) {
-                sinceDate = new Date();
-                sinceDate.setDate(sinceDate.getDate() - dateOffset);
+            // Extension uses Asteroid that serializes date differently than Meteor. Must perform this check.
+            if (!(sinceDate instanceof Date)) {
+                sinceDate = new Date(sinceDate);
             }
 
             if (!Meteor.userId()) {
