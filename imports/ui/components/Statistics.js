@@ -36,7 +36,7 @@ export default class Statistics extends Component {
                             <ExtensionInformationContainer/>)
                     }
                     {
-                        this.wrapContainerInCard('Time spent on a website',
+                        this.wrapContainerInCard('Website usage over time',
                             'Shows statistics related to the usage of a particular domain through the past week',
                             <DomainUsageLineChartContainer/>)
                     }
