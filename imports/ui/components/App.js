@@ -25,7 +25,7 @@ export default class App extends Component {
 
     getLogOutButton() {
         return (
-            <FlatButton label="Logout" onClick={() => this.props.onLogOut()}/>
+            <FlatButton label="LOG OUT" onClick={() => this.props.onLogOut()}/>
         );
     }
 

@@ -10,7 +10,6 @@ export default class ExtensionInformationContainer extends Component {
             loadingState: true,
             installed: false,
             authenticated: false,
-            enabled: false
         };
     }
 
@@ -23,7 +22,6 @@ export default class ExtensionInformationContainer extends Component {
             this.setState({
                 installed: true,
                 authenticated: response.authenticated,
-                enabled: response.extensionEnabled,
                 loadingState: false
             });
         });
@@ -34,7 +32,6 @@ export default class ExtensionInformationContainer extends Component {
             loadingState: this.state.loadingState,
             installed: this.state.installed,
             authenticated: this.state.authenticated,
-            enabled: this.state.enabled
         });
     }
 }

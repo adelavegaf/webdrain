@@ -41,14 +41,6 @@ export default class ExtensionInformation extends Component {
                         </StepContent>
                     </Step>
                     <Step>
-                        <StepLabel>Enable web tracking</StepLabel>
-                        <StepContent>
-                            <p className="step-information">
-                                Head over to the settings tab to enable web tracking
-                            </p>
-                        </StepContent>
-                    </Step>
-                    <Step>
                         <StepLabel>Ready to go!</StepLabel>
                     </Step>
                 </Stepper>

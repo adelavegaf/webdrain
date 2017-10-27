@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {createContainer} from 'meteor/react-meteor-data';
 import {Meteor} from 'meteor/meteor';
-import App from '../components/App.jsx';
+import App from '../components/App.js';
 
 class AppContainer extends Component {
     constructor(props) {
