@@ -1,4 +1,3 @@
-const YESTERDAY = 1;
 const DAYS_IN_WEEK = 7;
 const DAYS_IN_MONTH = 30;
 const DAYS_IN_YEAR = 365;
@@ -14,10 +13,8 @@ export default class DateUtil {
         return lastWeek;
     }
 
-    static getYesterday() {
-        const date = this.getCleanCurrentDate();
-        date.setDate(date.getDate() - YESTERDAY);
-        return date;
+    static getToday() {
+        return this.getCleanCurrentDate();
     }
 
     static getFirstDayOfPastWeek() {

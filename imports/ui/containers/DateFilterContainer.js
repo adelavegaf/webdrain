@@ -14,7 +14,7 @@ export default class DateFilterContainer extends Component {
         let firstDate = new Date();
         switch (value) {
             case 'day':
-                firstDate = DateUtil.getYesterday();
+                firstDate = DateUtil.getToday();
                 break;
             case 'week':
                 firstDate = DateUtil.getFirstDayOfPastWeek();

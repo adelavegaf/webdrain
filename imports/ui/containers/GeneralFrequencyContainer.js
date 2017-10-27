@@ -10,7 +10,7 @@ export default class GeneralFrequencyContainer extends Component {
             percentages: [],
             totals: [],
             selectedIndex: 0,
-            sinceDate: DateUtil.getYesterday()
+            sinceDate: DateUtil.getToday()
         }
     }
 
