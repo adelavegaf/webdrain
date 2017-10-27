@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis} from 'recharts';
 
-const BAR_COLORS = ['#6c6f00', '#cddc39', '#fff64f', '#ffc400', '#c79400'];
+const BAR_COLORS = ['#00bcd4', '#cddc39', '#fff64f', '#ffc400', '#ff197a'];
 
 const CHART_MARGINS = {top: 20, right: 30, bottom: 5, left: 20};
 
