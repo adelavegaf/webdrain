@@ -21,3 +21,7 @@ react-meteor-data
 accounts-ui
 accounts-password
 meteorhacks:aggregate
+practicalmeteor:mocha
+practicalmeteor:sinon
+xolvio:cleaner
+dburles:factory

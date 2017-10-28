@@ -5,9 +5,6 @@ import {check} from 'meteor/check';
 const Visits = new Mongo.Collection('visits');
 
 if (Meteor.isServer) {
-    Meteor.publish('visits', function tasksPublication() {
-        return Visits.find({owner: this.userId});
-    });
 
     Meteor.methods({
         'visits.timeSpentSince'(sinceDate) {
