@@ -7,11 +7,8 @@ const stepInformationStyle = {
 
 export default class ExtensionInformation extends Component {
     getCurrentIndex() {
-        if (this.props.enabled && this.props.authenticated) {
-            return 4;
-        }
-        else if (this.props.authenticated) {
-            return 2;
+        if (this.props.authenticated) {
+            return 3;
         }
         else if (this.props.installed) {
             return 1;
