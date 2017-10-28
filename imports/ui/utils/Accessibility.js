@@ -14,7 +14,7 @@ export default class Accessibility {
                                                        ' div > div >' +
                                                        ' div:nth-child(1) > button');
             if (closeButton) {
-                closeButton.setAttribute('aria-label', 'contract card button');
+                closeButton.setAttribute('aria-label', 'toggle show card content');
             }
         }
     }
