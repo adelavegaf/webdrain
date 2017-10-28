@@ -2,16 +2,20 @@ import React, {Component} from 'react';
 import GeneralUsageContainer from '../containers/GeneralUsageContainer';
 import DomainUsageLineChartContainer from '../containers/DomainUsageLineChartContainer';
 import {Card, CardHeader, CardText} from 'material-ui/Card';
-import './Statistics.css';
 import GeneralFrequencyContainer from '../containers/GeneralFrequencyContainer';
 import ExtensionInformationContainer from '../containers/ExtensionInformationContainer';
 import Accessibility from '../utils/Accessibility';
+
+const cardPaddingStyle = {
+    paddingTop: '5px',
+    paddingBottom: '5px'
+};
 
 export default class Statistics extends Component {
 
     wrapContainerInCard(title, subtitle, container) {
         return (
-            <div className="card-padding">
+            <div style={cardPaddingStyle}>
                 <Card initiallyExpanded={true}>
                     <CardHeader
                         title={title}

@@ -3,10 +3,17 @@ import {BottomNavigation, BottomNavigationItem, FontIcon, Paper} from 'material-
 import GeneralUsagePieChart from './GeneralUsagePieChart';
 import DateFilterContainer from '../containers/DateFilterContainer';
 import GeneralUsageBarChart from './GeneralUsageBarChart';
-import './GeneralUsage.css';
 
 const barIcon = <FontIcon className="material-icons">insert_chart</FontIcon>;
 const pieIcon = <FontIcon className="material-icons">pie_chart</FontIcon>;
+
+const errorMessageStyle = {
+    textAlign: 'center',
+    color: 'rgba(255, 0, 0, 0.66)',
+    marginTop: '20px',
+    marginBottom: '20px',
+    fontWeight: 300
+};
 
 const BAR_CHART_INDEX = 0;
 const PIE_CHART_INDEX = 1;
@@ -16,7 +23,7 @@ export default class GeneralUsage extends Component {
     chooseChart() {
         if (this.props.totals.length === 0) {
             return (
-                <div className="error-message">
+                <div style={errorMessageStyle}>
                     <div>We currently don't possess information to provide you with these statistics</div>
                     <div>Make sure you have our extension installed and enabled</div>
                 </div>
