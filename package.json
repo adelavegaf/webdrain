@@ -11,10 +11,16 @@
     "lodash": "^4.17.4",
     "material-ui": "^0.19.3",
     "meteor-node-stubs": "~0.2.4",
-    "react": "^15.4.0",
+    "react": "^15.6.2",
     "react-addons-pure-render-mixin": "^15.6.2",
-    "react-dom": "^15.4.0",
+    "react-dom": "^15.6.2",
     "react-transition-group": "^2.2.1",
     "recharts": "^1.0.0-apha.5"
+  },
+  "devDependencies": {
+    "enzyme": "^3.1.0",
+    "enzyme-adapter-react-15": "^1.0.2",
+    "faker": "^4.1.0",
+    "react-test-renderer": "^15.6.2"
   }
 }
