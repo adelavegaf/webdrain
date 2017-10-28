@@ -9,7 +9,7 @@ export default class DateFilter extends Component {
 
     render() {
         return (
-            <div>
+            <div className="date-selector">
                 <SelectField floatingLabelText="Show results since" value={this.props.currentDateFilter}
                              onChange={(event, index, value) => this.onDateFilterChange(value)}>
                     <MenuItem value="day" primaryText="Today"/>

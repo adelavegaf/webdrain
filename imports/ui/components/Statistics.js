@@ -5,6 +5,7 @@ import {Card, CardHeader, CardText} from 'material-ui/Card';
 import './Statistics.css';
 import GeneralFrequencyContainer from '../containers/GeneralFrequencyContainer';
 import ExtensionInformationContainer from '../containers/ExtensionInformationContainer';
+import Accessibility from '../utils/Accessibility';
 
 export default class Statistics extends Component {
 
@@ -24,6 +25,10 @@ export default class Statistics extends Component {
                 </Card>
             </div>
         );
+    }
+
+    componentDidMount() {
+        Accessibility.applyFixes();
     }
 
     render() {
