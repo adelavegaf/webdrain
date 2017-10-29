@@ -5,8 +5,9 @@ import {check} from 'meteor/check';
 const Goals = new Mongo.Collection('goals');
 
 function augmentGoalWithStatus(goal, sinceDate) {
-    const [usage] = Meteor.call('visits.getDomainUsage', goal.hostname, sinceDate);
-    goal.timeSpent = usage ? usage.total : 0;
+    const domainUsage = Meteor.call('visits.getDomainUsage', goal.hostname, sinceDate);
+    // Due to timezone's difference, domain usage could be split between two days in UTC format.
+    goal.timeSpent = domainUsage.reduce((total, cur) => total + cur.total, 0);
     switch (goal.quantifier) {
         case '<':
             goal.isFailing = goal.timeSpent > goal.timeGoal;
