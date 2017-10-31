@@ -23,6 +23,10 @@ const subtitleStyle = {
     color: 'rgba(255, 255, 255, 0.94)'
 };
 
+const loginContainer = {
+    top: '140px'
+};
+
 const buttonContainer = {
     marginRight: '5px',
     marginLeft: '5px'
@@ -42,17 +46,18 @@ const buttonsContainer = {
 };
 
 const loginPromptContainerStyle = {
-    background: '#009faf'
+    background: '#009faf',
+    height: '400px'
 };
 
 export default class LandingPage extends Component {
     render() {
         return (
             <div className="row justify-content-center" style={loginPromptContainerStyle}>
-                <div className="col-12 col-md-6 col-lg-4">
+                <div className="col-10 col-md-6 col-lg-3">
                     <h2 style={titleStyle}>We help you manage your time in the web</h2>
                     <h2 style={subtitleStyle}>Set website usage daily goals and start getting insights today!</h2>
-                    <div>
+                    <div style={loginContainer}>
                         <Card>
                             <CardText>
                                 <div style={loginPromptStyle}>
