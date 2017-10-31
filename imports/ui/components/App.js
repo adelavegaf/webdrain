@@ -1,3 +1,4 @@
+//como heroku esta caido no puedo decir nada de la interfaz como siempre el cogido esta muy ordenado y hare otro code review cuando pueda ver la interfaz
 import React, {Component} from 'react';
 import {AppBar, FlatButton} from 'material-ui';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
