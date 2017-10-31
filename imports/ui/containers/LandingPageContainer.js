@@ -6,8 +6,7 @@ export default class LandingPageContainer extends Component {
         super(props);
         this.state = {
             username: '',
-            password: '',
-            authenticationErrors: ''
+            password: ''
         };
     }
 
@@ -29,7 +28,7 @@ export default class LandingPageContainer extends Component {
 
     render() {
         return React.createElement(LandingPage, {
-            authenticationError: this.state.authenticationError,
+            authenticationError: this.props.authenticationError,
             onUserNameChange: (value) => this.onUserNameChange(value),
             onPasswordChange: (value) => this.onPasswordChange(value),
             onLogIn: () => this.onLogIn(),
