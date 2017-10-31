@@ -32,10 +32,12 @@ export default class App extends Component {
     render() {
         return (
             <MuiThemeProvider muiTheme={muiTheme}>
-                <div>
-                    <AppBar title="WEB DRAIN" titleStyle={titleStyle}
-                            showMenuIconButton={false}
-                            iconElementRight={this.props.currentUser ? this.getLogOutButton() : <div></div>}/>
+                <div className="container-fluid">
+                    <div className="row">
+                        <AppBar title="WEB DRAIN" titleStyle={titleStyle}
+                                showMenuIconButton={false}
+                                iconElementRight={this.props.currentUser ? this.getLogOutButton() : <div></div>}/>
+                    </div>
                     {
                         this.props.currentUser ? <StatisticsContainer/> :
                         <LandingPageContainer
