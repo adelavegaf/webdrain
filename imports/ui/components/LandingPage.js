@@ -24,7 +24,7 @@ const subtitleStyle = {
 };
 
 const loginContainer = {
-    top: '140px'
+    top: '160px'
 };
 
 const buttonContainer = {
@@ -46,8 +46,28 @@ const buttonsContainer = {
 };
 
 const loginPromptContainerStyle = {
-    background: '#009faf',
-    height: '400px'
+    backgroundColor: '#007887',
+    height: '400px',
+    backgroundImage: 'url(./pattern.svg)'
+};
+
+const headersContainer = {
+    marginTop: '20px',
+    marginBottom: '20px'
+};
+
+const mainHeader = {
+    textAlign: 'center',
+    color: '#FFFFFF',
+    fontWeight: 300,
+    fontSize: '47px'
+};
+
+const subHeader = {
+    textAlign: 'center',
+    color: '#FFFFFF',
+    fontWeight: 300,
+    fontSize: '20px'
 };
 
 export default class LandingPage extends Component {
@@ -55,9 +75,12 @@ export default class LandingPage extends Component {
         return (
             <div>
                 <div className="row justify-content-center" style={loginPromptContainerStyle}>
-                    <div className="col-10 col-md-6 col-lg-3">
-                        <h2 style={titleStyle}>We help you manage your time in the web</h2>
-                        <h2 style={subtitleStyle}>Set website usage daily goals and start getting insights today!</h2>
+                    <div className="row justify-content-center" style={headersContainer}>
+                        <h1 className="col-12" style={mainHeader}>Manage your time in the web</h1>
+                        <h2 className="col-12" style={subHeader}>Set website usage daily goals and start getting insights today!</h2>
+                    </div>
+                    <div className="col-10 col-md-6 col-lg-4">
+                        <div/>
                         <div style={loginContainer}>
                             <Card>
                                 <CardText>
