@@ -9,20 +9,6 @@ const loginPromptStyle = {
     color: '#737976'
 };
 
-const titleStyle = {
-    paddingTop: '20px',
-    fontWeight: 300,
-    fontSize: '22px',
-    color: 'rgba(255, 255, 255, 0.94)'
-};
-
-const subtitleStyle = {
-    paddingBottom: '10px',
-    fontWeight: 300,
-    fontSize: '18px',
-    color: 'rgba(255, 255, 255, 0.94)'
-};
-
 const loginContainer = {
     top: '160px'
 };
