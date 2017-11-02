@@ -46,14 +46,16 @@ const mainHeader = {
     textAlign: 'center',
     color: '#FFFFFF',
     fontWeight: 300,
-    fontSize: '47px'
+    fontSize: '60px',
+    paddingBottom: '35px'
 };
 
 const subHeader = {
     textAlign: 'center',
     color: '#FFFFFF',
     fontWeight: 300,
-    fontSize: '20px'
+    fontSize: '24px',
+    paddingBottom: '35px'
 };
 
 export default class LandingPage extends Component {
